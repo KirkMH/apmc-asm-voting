@@ -1,0 +1,260 @@
+body {
+	margin-bottom: 0px;
+	margin-top: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	background-color:#ccc;
+}
+
+#container {
+	border-radius: 4px;
+	border:px solid #;
+	background-color:#;
+	padding:0px;
+	padding-top:0px;
+	width:90%;
+	min-width:300px;
+	max-width:700px;
+	position: relative;
+    margin:20px auto;
+    overflow:hidden;
+    background-color:#000;
+}
+#top {
+	width:100%;
+	min-height:px;
+	background-color: rgba(87,184,70, 0.8);
+	font-size:23px; color: #fff; font-family: 'Open Sans',sans-serif; font-weight:bold; 
+
+	padding-top:13px;
+	padding-bottom:12px;
+	border-bottom:1px solid #666;
+}
+#q00, #q0, #q1, #q2, #q3, #q4, #q5, #q6, #q7, #q8, #q9, #q9a, #q9b, #q9c, #q9d {
+	border-radius: 0px;
+	overflow:hidden;
+	background-color:#fff;
+	border-top:px solid #666;
+	width:100%;
+	min-width:300px;
+	max-width:700px;
+	margin-top:px;
+	display:none;
+
+    overflow:;
+    line-height:28px;
+    font-size:22px; color: #000; font-family: 'Open Sans',sans-serif;
+	box-shadow: 0px 0px 4px #;
+	margin:0 auto
+}
+.btnyes {
+	font-size:30px; color: #fff; font-family: 'Open Sans',sans-serif;
+	text-shadow: 1px 1px #;
+	width:46%;
+	background-color:#72cb29;
+	border-radius:5px; 
+	display:inline-block;
+	cursor:pointer;
+	font-weight:bold;
+	padding:21px 0px;
+	text-decoration:none;
+
+	margin-left:5px;
+	margin-bottom:15px;
+}
+.btnyes a:hover {
+  background-color: #ddd;
+  color: black;
+}
+.btnno {
+	font-size:30px; color: #fff; font-family: 'Open Sans',sans-serif;
+	text-shadow: 1px 1px 1px #;
+	width:46%;
+	background-color:#888;
+	border-radius:5px; 
+	display:inline-block;
+	cursor:pointer;
+	font-weight:bold;
+	padding:21px 0px;
+	text-decoration:none;
+
+	margin-left:5px;
+	margin-bottom:15px;
+}
+.btnno a:hover {
+  background-color: #ddd;
+  color: black;
+}
+.btnnext {
+	font-size:30px; color: #fff; font-family: 'Open Sans',sans-serif;
+	width:70%;
+	background-color:#72cb29;
+	border-radius:5px; 
+	display:inline-block;
+	cursor:pointer;
+	font-weight:bold;
+	padding:25px 0px;
+	text-decoration:none;
+
+}
+.btnnext a:hover {
+  background-color: #ddd;
+  color: black;
+}
+.select {
+	font-size:30px; color: #fff; font-family: 'Open Sans',sans-serif;
+	width:70%;
+	background-color:#f00;
+	border-radius:5px; 
+	display:inline-block;
+	cursor:pointer;
+	font-weight:bold;
+	padding:25px 0px;
+	text-decoration:none;
+}
+.email {	
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.btnplay {
+	font-size:30px; color: #fff; font-family: 'Open Sans',sans-serif;
+	background-color:#817f6c;
+	border-radius:5px; 
+	display:inline-block;
+	font-weight:bold;
+	padding:25px 0px;
+	text-decoration:none;
+}
+#box {
+margin: 0 auto;
+padding:10px;
+}
+#box2 {
+width:50%;
+min-width:300px;
+margin: 0 auto;
+padding:10px;
+}
+
+
+
+.h1w { font-size:35px; color: #fff; font-family: 'Open Sans',sans-serif; text-transform:uppercase }
+.h1 { font-size:24px; color: #fff; font-family: 'Open Sans',sans-serif; text-transform:uppercase }
+.h2 { color:#cc0000; }
+.h10 { font-size:17px; color: #777; font-family: 'Open Sans',sans-serif; }
+
+.circle1 { 	font-size:20px; color: #fff; font-family: 'Open Sans',sans-serif; font-weight:bold; background:#666;
+border-radius:10000px; padding:6px 12px; text-shadow: 0px 1px #  }
+.circle2 { 	font-size:20px; color: #fff; font-family: 'Open Sans',sans-serif; font-weight:bold; background:#ddd;
+border-radius:10000px; padding:6px 12px; text-shadow: 0px 1px # }
+
+
+@media screen and (max-width: 500px){
+  #q00, #q0, #q1, #q2, #q3, #q4, #q5, #q6, #q7, #q8, #q9, #q9a, #q9b, #q9c, #q9d {
+
+    font-size:18px;
+    line-height:21px;
+}
+
+#container {
+margin:15px auto;
+}
+.h1w {font-size:24px;}
+.h1 {font-size:17px;}
+#top {font-size:19px;}
+.btnyes {font-size:24px;}
+.btnno {font-size:24px;}
+.btnnext {font-size:30px; width:90%;}
+
+
+}
+
+/* The container must be positioned relative: */
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: DodgerBlue;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.sticky-container{
+    padding:0px 0px 0px 30px;
+    margin:0px;
+    position:fixed;
+    right:0px;
+    top:200px;
+    width:300px;
+    z-index: 1100;
+}
+
+.card-text{
+	width: 300px;
+	padding-right: 50px;
+}
+
+.rcorners {
+  border-radius: 25px;
+  background: #f0ad4e;
+  padding: 15px 0px;
+  width: 220px;
+  margin: 5px;
+  height: 90px;
+  text-align: center;
+}

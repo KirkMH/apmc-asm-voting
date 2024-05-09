@@ -1,0 +1,2 @@
+[29-Jun-2021 11:07:46 UTC] PHP Parse error:  syntax error, unexpected 'class' (T_CLASS), expecting ';' or ',' in /home/customer/www/acemc-aklan.com/public_html/elect/core/DB.php on line 5
+[29-Jun-2021 11:09:33 UTC] PHP Parse error:  syntax error, unexpected 'class' (T_CLASS), expecting ';' or ',' in /home/customer/www/acemc-aklan.com/public_html/elec/core/DB.php on line 5
