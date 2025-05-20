@@ -78,11 +78,9 @@ $status = "OPEN";
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<title>APMC-Aklan Inc. Election | Login</title>
+	<title>APMC-Aklan Inc. ASM <?=date('Y')?> Portal | Login</title>
 	<link rel="stylesheet" href="css/index.css?v=<?=time();?>">
 </head>
-
-
 
 
 
@@ -103,6 +101,7 @@ $status = "OPEN";
                         <form id="login-form" class="form login100-form validate-form" action="index.php" method="post">
                             <div class="text-center">                            
 								<img class="" src="_imgs/apmc_logo.png" alt="ACE-MC-logo" height="150px">
+                                <h2><?=date('Y')?> Annual Stockholders Meeting Portal</h2>
 							</div>
 
                         <?php if (($now >= $from_date) && ($now <= $to_date)){ ?>
@@ -128,8 +127,9 @@ $status = "OPEN";
                                 <input type="submit" name="submit" class="login100-form-btn btn btn-info btn-md" value="Login">
                             </div>
                         <?php } elseif ($now < $from_date) { ?>
-                            <p align="center"><br><h3>Voting will start on <?=$from_date->format('d M Y \a\t h:i A');?>.<br><br>Please wait...</h3></p>
-                            <p align="center"><br><a href="meeting-info.php" class="btn btn-lg btn-block btn-info">Open Meeting Information</a></p>
+                            <br><h3>Notice to Our Valued Shareholders:</h3>
+                            <p>The voting system is not yet available. Voting will start on <?=$from_date->format('d M Y \a\t h:i A');?> We will notify you once it is ready. Thank you for your patience and understanding.</p>
+                            <p><br><a href="meeting-info.php" class="btn btn-lg btn-block btn-info">Open Meeting Information</a></p>
 
                         <?php } else { ?>
                             <p style="text-align: center"><br><h3>Voting has been closed.<br><br>The result of the election will be announced during Annual Stockholder's Meeting.<br><br>Thank you.</h3></p>
