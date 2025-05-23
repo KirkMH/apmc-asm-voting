@@ -158,7 +158,7 @@ require_once 'ad-header.php';
 	        </thead>
         <tbody>
         	<?php
-			$all = MyDb::select_all("candidate_id, display_name, candidate_info", "tbl_candidate", "1 ORDER BY display_name ASC");
+			$all = MyDb::select_all("candidate_id, display_name, candidate_info", "tbl_candidate", "1 ORDER BY candidate_id ASC");
 			while ($data = $all->fetchAll(PDO::FETCH_ASSOC)) {
 			  foreach ($data as $value) {
                 $id = $value['candidate_id'];

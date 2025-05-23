@@ -1,11 +1,5 @@
 <?php
 require_once 'metaheader.php';
-require_once 'core/PHPMailer/PHPMailer.php';
-require_once 'core/PHPMailer/SMTP.php';
-require_once 'core/PHPMailer/Exception.php';
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
 
 $err = false;
 
@@ -28,13 +22,13 @@ if (Input::get('submit')) {
 	}
 }
 else if (Input::get('resend')) {
-	// var_dump($_SESSION);
+	var_dump($_SESSION);
 	$code = F1ITSS::randomNum(4);
 
 	$to = $_SESSION['email'];
     $subject = "Verification Code for APMC-Aklan Inc. Online Voting System";
     
-    $message = "<p style='font-size: 14pt;'>Thank you for taking the time to vote in our Annual Stockholders Meeting. To access the voting module, please enter the verification code below on the website.</p>";
+    $message = "<p style='font-size: 14pt;'>Thank you for taking you time to vote for our Annual Meeting of Stockholders. To complete your login process, kindly enter the verification code below to the website.</p>";
     $message .= "<p style='font-size: 32pt; text-align: center;'>$code</p>"; // add spacing to code here
     
     $header = "From:APMC-Aklan Inc. <noreply@apmcaklan-asm.com> \r\n";
@@ -43,46 +37,27 @@ else if (Input::get('resend')) {
     $header .= "MIME-Version: 1.0\r\n";
     $header .= "Content-type: text/html\r\n";
 
-	// Use fully qualified class names
-	$mail = new PHPMailer();
-
 	try {
-		// SMTP server configuration
-		$mail->isSMTP();
-		$mail->Host       = 'server901.web-hosting.com';            // Namecheap SMTP server
-		$mail->SMTPAuth   = true;
-		$mail->Username   = 'noreply@apmcaklan-asm.com';               // Your Namecheap email address
-		$mail->Password   = 'XU3n(hkH&M%+';                    // Your email password
-		$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // SSL encryption
-		$mail->Port       = 465;                                // SSL port
+		if( mail ($to,$subject,$message,$header) ) {
+			// save security code here
+			$data = array('security_code' => implode(explode(" ", $code)));
+			MyDb::update(	'tbl_shareholder', 
+						'id',
+						$_SESSION['user_no'],
+						$data);
 
-		// Email headers
-		$mail->setFrom('noreply@apmcaklan-asm.com', 'APMC-Aklan Inc.');
-		$mail->addAddress($to, $_SESSION['name']);
-
-		// Email content
-		$mail->isHTML(true);
-		$mail->Subject = $subject;
-		$mail->Body    = $message;
-		$mail->AltBody = "Thank you for taking the time to vote in our Annual Stockholders Meeting. To access the voting module, please enter the verification code below on the website.\n\n" . $code;
-
-		// Send email
-		$mail->send();
-		
-		// save security code here
-		$data = array('security_code' => implode(explode(" ", $code)));
-		MyDb::update(	'tbl_shareholder', 
-					'id',
-					$_SESSION['user_no'],
-					$data);
-
-		if (Input::get('resend') != "1") {
-			$msg = "We have resent your verification code. Please check your email and enter the 4 digit code below.";
+			if (Input::get('resend') != "1") {
+				$msg = "We have resent your verification code. Please check your email and enter the 4 digit code below.";
+			}
+		}else {
+			$msg = "We are unable to send you an email. Please confirm that you are using a valid email.";
+			$err = true;
 		}
-	} catch (\PHPMailer\PHPMailer\Exception $e) {
-		$msg = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+	} catch (Exception $e) {
+		$msg = "We are unable to send you an email. Please confirm that you are using a valid email and that your internet connection is stable.";
 		$err = true;
 	}
+
 }
 
 require_once 'header.php';

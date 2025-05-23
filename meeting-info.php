@@ -27,7 +27,7 @@ if (Input::get('submit')) {
 }
 
 // check if election is still open
-$now = new DateTime(null, new DateTimeZone('Asia/Manila'));
+$now = new DateTime('now', new DateTimeZone('Asia/Manila'));
 
 $value = MyDb::select("*", "tbl_election", "elect_id = 1");
 $from_date = new DateTime($value['duration_from']);

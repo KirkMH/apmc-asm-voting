@@ -43,7 +43,7 @@ $agenda = $value['voted_on2'];
 								<img class="" src="_imgs/apmc_logo.png" alt="APMC-logo" height="100px">
 							</div>
                             
-                            <p class="text-center text-info">Please cast your votes on the items below. An item with a <span class="badge badge-danger">New</span></a> badge indicates that you haven't casted your vote yet. This <span class="bg-secondary" style="padding: 2px; color: white;">button</span> indicates that it has been filled. Please click the <span style="color:black;">Back to Selection</span> button if you have casted your votes on all the items.</p>
+                            <p class="text-center text-info">Please cast your votes on the items below. An item with a <span class="badge badge-danger">New</span></a> badge indicates that you haven't casted your vote yet. This <span class="bg-secondary" style="padding: 2px; color: white;">button</span> indicates that it has been filled. Please click the <span style="color:black;">Back to Action List</span> button if you have casted your votes on all the items.</p>
                             <br>
 
                             <?php if (is_null($bod)) { ?>
@@ -61,7 +61,7 @@ $agenda = $value['voted_on2'];
                                 <a href="#" class="button bg-secondary pull-right">Agenda</a>
                             <?php } ?>
 
-                            <a href="index1.php" class="btn btn-light" style="width:100%;margin-top: 30px;">Back to Selection</a>
+                            <a href="index1.php" class="btn btn-light" style="width:100%;margin-top: 30px;">Back to Action List</a>
                         </form>
                     </div>
                 </div>

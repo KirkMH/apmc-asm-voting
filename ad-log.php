@@ -9,14 +9,18 @@ else if (Input::get('submit')) {
    $user_login = addslashes(Input::get('user_login'));
    $psswd = addslashes(Input::get('password'));
 
-   $sqlResult = MyDb::check_password($psswd, "user_pass", "feo_users", "user_login = '$user_login'");
+   $sqlResult = MyDb::select('*', "feo_users", "user_login = '$user_login' AND user_pass = '$psswd'");
+//    $sqlResult =  MyDb::check_password($psswd, "user_pass", "feo_users", "user_login = '$user_login'");
 
     if($sqlResult){
+       session_start();
        $_SESSION['name'] = $sqlResult['display_name'];
        $_SESSION['email'] = $sqlResult['user_email'];
        $_SESSION['user_no'] = $sqlResult['ID'];
-
-        Redirect::to("admin.php");
+       echo "<script>alert('Login successful for ".$sqlResult['ID']."!');</script>";
+        
+        $msg = "Login successful for ". $_SESSION['user_no'] ."!";
+        Redirect::to("admin.php");  
     } 
     else {
         $msg = "Invalid username and/or password.\nPlease try again.";  
@@ -32,7 +36,7 @@ else if (Input::get('submit')) {
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<title>APMC - Aklan Inc. Voting System | Administrator's Login</title>
+	<title>APMC - Aklan Inc. ASM Portal | Administrator's Login</title>
 	<link rel="stylesheet" href="css/index.css">
 </head>
 
@@ -59,7 +63,8 @@ else if (Input::get('submit')) {
 								<img class="" src="_imgs/apmc_logo.png" alt="APMC-logo" height="100px">
 							</div>
 
-                            <p class="text-center text-info">Administrator's Login</p>
+                            <h2 class="text-center text-info">Administrator's Login</h2>
+                            <p class="text-center text-info"><?=date('Y')?> Annual Stockholders Meeting Portal</p>
 
                             <div class="form-group wrap-input100 validate-input" data-validate = "Valid username is required. Please contact your administrator if you have none.">
                                 <label for="user_login" class="text-info">Username:</label><br>

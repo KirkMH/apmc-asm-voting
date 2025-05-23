@@ -136,7 +136,7 @@ require_once 'ad-header.php';
 
           <?php
           // get server date/time
-          $now = new DateTime(null, new DateTimeZone('Asia/Manila'));
+          $now = new DateTime('now', new DateTimeZone('Asia/Manila'));
 
           $all = MyDb::select_all("*", "tbl_election", "1");
           $ctr = 1;

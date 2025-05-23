@@ -9,7 +9,8 @@ else if (Input::get('submit')) {
    $user_login = addslashes(Input::get('user_login'));
    $psswd = addslashes(Input::get('password'));
 
-   $sqlResult = MyDb::check_password($psswd, "user_pass", "feo_users", "user_login = '$user_login'");
+   $sqlResult = MyDb::select('*', "feo_users", "user_login = '$user_login' AND user_pass = '$psswd'");
+//    $sqlResult =  MyDb::check_password($psswd, "user_pass", "feo_users", "user_login = '$user_login'");
 
     if($sqlResult){
        $_SESSION['name'] = $sqlResult['display_name'];

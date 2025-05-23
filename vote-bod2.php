@@ -46,6 +46,7 @@ $votes = number_format($_SESSION['points'] * 15);
 
 				Please note that your <?=$_SESSION['points']?> shares will be granted to all of your selected candidates. If you want to assign specific number of shares to a candidate, please <a href="vote-bod.php">click here</a>.</p>
 	      <p> <input type="button" class="show_hide btn btn-info btn-lg btn-block mt-auto" rel="#q1" value="Start"> </p>
+		  <p><a class="btn btn-secondary btn-lg btn-block mt-auto" href="index2.php">Back to Selection</a></p>
 	    </div>
 	  </div>
 
@@ -56,7 +57,7 @@ $votes = number_format($_SESSION['points'] * 15);
 
 	      <?php
 	      // list all the candidates under this position
-	      $candidates = MyDb::select_all("*", "tbl_candidate", "1 ORDER BY display_name ASC");
+	      $candidates = MyDb::select_all("*", "tbl_candidate", "1 ORDER BY candidate_id ASC");
 
 		  while ($data = $candidates->fetchAll(PDO::FETCH_ASSOC)) {
 		    foreach ($data as $value) {

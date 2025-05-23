@@ -25,6 +25,7 @@ CREATE TABLE `tbl_shareholder` (
   `username` varchar(255) NOT NULL,
   `tin` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `contact` varchar(255) NOT NULL,
   `shares` decimal(10,2) NOT NULL, -- Number of shares/voting points
   `security_code` varchar(255) DEFAULT NULL,
   `voted_on` datetime DEFAULT NULL, -- For board election
@@ -50,24 +51,16 @@ CREATE TABLE `tbl_vote` (
   `candidate_id` int(11) NOT NULL,
   `points` decimal(10,2) NOT NULL,
   `timestamp` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`vote_id`),
-  KEY `member_id` (`member_id`),
-  KEY `candidate_id` (`candidate_id`),
-  FOREIGN KEY (`member_id`) REFERENCES `tbl_shareholder` (`id`),
-  FOREIGN KEY (`candidate_id`) REFERENCES `tbl_candidate` (`id`)
+  PRIMARY KEY (`vote_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Temporary votes table (for vote in progress)
 CREATE TABLE `tbl_temp_vote` (
-  `temp_vote_id` int(11) NOT NULL AUTO_INCREMENT,
+  `temp_id` int(11) NOT NULL AUTO_INCREMENT,
   `member_id` int(11) NOT NULL,
   `candidate_id` int(11) NOT NULL,
   `points` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`temp_vote_id`),
-  KEY `member_id` (`member_id`),
-  KEY `candidate_id` (`candidate_id`),
-  FOREIGN KEY (`member_id`) REFERENCES `tbl_shareholder` (`id`),
-  FOREIGN KEY (`candidate_id`) REFERENCES `tbl_candidate` (`id`)
+  PRIMARY KEY (`temp_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Agenda Items table
@@ -80,13 +73,9 @@ CREATE TABLE `tbl_agenda` (
 
 -- Temporary agenda votes table (for vote in progress)
 CREATE TABLE `tbl_agenda_temp_vote` (
-  `temp_vote_id` int(11) NOT NULL AUTO_INCREMENT,
+  `temp_id` int(11) NOT NULL AUTO_INCREMENT,
   `member_id` int(11) NOT NULL,
   `agenda_id` int(11) NOT NULL,
   `vote` varchar(1) NOT NULL,
-  PRIMARY KEY (`temp_vote_id`),
-  KEY `member_id` (`member_id`),
-  KEY `item_id` (`item_id`),
-  FOREIGN KEY (`member_id`) REFERENCES `tbl_shareholder` (`id`),
-  FOREIGN KEY (`item_id`) REFERENCES `tbl_agenda` (`id`)
+  PRIMARY KEY (`temp_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

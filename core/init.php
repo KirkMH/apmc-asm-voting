@@ -1,7 +1,7 @@
 <?php
 // ** MySQL settings ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'dbzzq47j9ry2a7' );
+define( 'DB_NAME', 'apmcbkmg_asm2025' );
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
 /** The Database Collate type. Don't change this if in doubt. */
@@ -16,9 +16,9 @@ define( 'DB_COLLATE', '' );
 
 # ============ ACTUAL ===============
 
-define( 'DB_USER', 'u30kqmttvpqvl' );
-define( 'DB_PASSWORD', '3}2i@$lpks_y' );
-define( 'DB_HOST', 'localhost:3306' );
+define( 'DB_USER', 'apmcbkmg_hilariki' );
+define( 'DB_PASSWORD', ']qz+yB$Z^1~1' );
+define( 'DB_HOST', 'localhost' );
 
 
 require_once 'MyDb.php';

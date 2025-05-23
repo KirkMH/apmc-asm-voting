@@ -134,7 +134,7 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item <?=($url=='admin.php') ? 'active' : '';?>">
-          <a class="nav-link" href="admin.php">Results
+          <a class="nav-link" href="admin.php">Elections
           </a>
         </li>
         <li class="nav-item <?=($url=='ad-voters.php') ? 'active' : '';?>">

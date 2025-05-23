@@ -77,6 +77,7 @@ require_once 'header.php';
 	        <p class="lead" align="left" style="padding: 30px 30px;">Hello, <?=$_SESSION['name']?>!<br><br>
 	        Please cast your vote for the agenda that follows. To vote, simply click on the dropdown list and select your choice.</p>
 	      <p> <input type="button" class="show_hide btn btn-info btn-lg btn-block mt-auto" rel="#q1" value="Start"> </p>
+		  <p><a class="btn btn-secondary btn-lg btn-block mt-auto" href="index2.php">Back to Selection</a></p>
 	    </div>
 	  </div>
 

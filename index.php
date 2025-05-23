@@ -13,6 +13,7 @@ if (Input::get('submit')) {
 
    $sqlResult = MyDb::select('*', "tbl_shareholder", "username = '$username' AND tin = '$psswd'");
     if($sqlResult){
+       session_start();
        $_SESSION['name'] = $sqlResult['full_name'];
        $_SESSION['email'] = $sqlResult['email'];
        $_SESSION['user_no'] = $sqlResult['id'];
@@ -57,7 +58,7 @@ if (Input::get('submit')) {
 }
 
 // check if election is still open
-$now = new DateTime(null, new DateTimeZone('Asia/Manila'));
+$now = new DateTime('now', new DateTimeZone('Asia/Manila'));
 
 $value = MyDb::select("*", "tbl_election", "elect_id = 1");
 $from_date = new DateTime($value['duration_from']);
