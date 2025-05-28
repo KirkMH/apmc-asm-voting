@@ -13,7 +13,7 @@ $str = "
 $member_id = $_POST['member_id'];
 $ctr = 0;
 
-$all = MyDb::run("SELECT tbl_agenda.agenda_id, agenda_item, vote FROM tbl_agenda LEFT JOIN (SELECT agenda_id, vote FROM tbl_agenda_temp_vote WHERE tbl_agenda_temp_vote.member_id = $member_id) AS tbl_agenda_vote ON tbl_agenda.agenda_id = tbl_agenda_vote.agenda_id ORDER BY agenda_item");
+$all = MyDb::run("SELECT tbl_agenda.agenda_id, agenda_item, tbl_agenda_vote.vote AS vote FROM tbl_agenda LEFT JOIN (SELECT agenda_id, vote FROM tbl_agenda_temp_vote WHERE tbl_agenda_temp_vote.member_id = $member_id) AS tbl_agenda_vote ON tbl_agenda.agenda_id = tbl_agenda_vote.agenda_id ORDER BY tbl_agenda.agenda_id");
 while ($data = $all->fetchAll(PDO::FETCH_ASSOC)) {
 	foreach ($data as $value) {
 		$ctr++;

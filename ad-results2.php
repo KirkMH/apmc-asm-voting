@@ -191,7 +191,7 @@ require_once 'ad-meta.php';
         <tbody>
         	<?php
           $ctr = 0;
-			$all = MyDb::select_all("agenda_id, agenda_item", "tbl_agenda", "1 ORDER BY agenda_item ASC");
+			$all = MyDb::select_all("agenda_id, agenda_item", "tbl_agenda", "1 ORDER BY agenda_id ASC");
 			while ($data = $all->fetchAll(PDO::FETCH_ASSOC)) {
 			  foreach ($data as $value) {
           $ctr++;

@@ -89,7 +89,7 @@ require_once 'header.php';
 	      <ol style="list-style: none;">
 	      <?php
 	      // list all the agenda
-	      $agenda = MyDb::select_all("*", "tbl_agenda", "1 ORDER BY agenda_item");
+	      $agenda = MyDb::select_all("*", "tbl_agenda", "1");
 	      $ctr = 0;
 
 		  while ($data = $agenda->fetchAll(PDO::FETCH_ASSOC)) {

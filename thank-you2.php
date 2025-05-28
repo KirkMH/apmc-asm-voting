@@ -1,12 +1,18 @@
 <?php
 require_once 'metaheader.php';
+require_once 'core/PHPMailer/PHPMailer.php';
+require_once 'core/PHPMailer/SMTP.php';
+require_once 'core/PHPMailer/Exception.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 $to = $_SESSION['email'];
 $subject = "Copy of Selection | APMC Agenda";
  
 $message =  "<p style='font-size: 14pt;'>Hi, ".$_SESSION['name'].". Thank you for casting your vote!</p>".
 			"<p style='font-size: 14pt;'>Below is a copy of your selections for the agenda.</p><br>";
-
+$alt_message = "Hi, ".$_SESSION['name'].". Thank you for casting your vote!\n\nBelow is a copy of your selections for the agenda.\n\n";
 
 $message .= "
 <table class='table table-hover'>
@@ -22,7 +28,7 @@ $member_id = $_SESSION['user_no'];
 $ctr = 0;
 $total = 0;
 
-$all = MyDb::select_all("tbl_agenda_vote.agenda_id, agenda_item, vote", "tbl_agenda_vote INNER JOIN tbl_agenda ON tbl_agenda_vote.agenda_id = tbl_agenda.agenda_id", "tbl_agenda_vote.member_id = $member_id ORDER BY agenda_item");
+$all = MyDb::select_all("tbl_agenda_vote.agenda_id, agenda_item, tbl_agenda_vote.vote", "tbl_agenda_vote INNER JOIN tbl_agenda ON tbl_agenda_vote.agenda_id = tbl_agenda.agenda_id", "tbl_agenda_vote.member_id = $member_id ORDER BY tbl_agenda.agenda_id");
 while ($data = $all->fetchAll(PDO::FETCH_ASSOC)) {
   foreach ($data as $value) {
     $ctr++;
@@ -38,31 +44,40 @@ while ($data = $all->fetchAll(PDO::FETCH_ASSOC)) {
                     <td style='text-align: left;font-size: 14pt;padding: 5px;'>".$value['agenda_item']."</td>
                     <td style='text-align: center;font-size: 14pt;padding: 5px;'>".$vote_desc."</td>
                   </tr>";
+    $alt_message .= "".$value['agenda_item']." (".$vote_desc.")\n";
   }
 }
 $message .= "   </tbody>
               </table>";
  
 
-$header = "From:Asia Pacific Medical Center - Aklan Inc. <emailauth@asiapacificmedicalcenter-aklan.com> \r\n";
-$header .= "Reply-To: emailauth@asiapacificmedicalcenter-aklan.com\r\n";
-$header .= "Return-Path: emailauth@asiapacificmedicalcenter-aklan.com\r\n";
-//$header .= 'Cc: bsdelatorre1986@yahoo.com, roelesca@yahoo.com, peps_md07@yahoo.com, sazonpauleen@gmail.com' . "\r\n";
-$header .= 'Bcc: f1itss.aklan@gmail.com' . "\r\n"; //mconananmoratomd@yahoo.com, 
+$mail = new PHPMailer();
 
-$header .= "MIME-Version: 1.0\r\n";
-$header .= "Content-type: text/html\r\n";
- 
- 
 try {
-	if( mail ($to,$subject,$message,$header) ) {
-     	$msg = "A copy of your choices has been sent to your email";
-     }else {
-        $msg = "We are unable to send you an email. Please confirm that you are using a valid email.";
-     }
+  // SMTP server configuration
+  $mail->isSMTP();
+  $mail->Host       = 'server901.web-hosting.com';            // Namecheap SMTP server
+  $mail->SMTPAuth   = true;
+  $mail->Username   = 'noreply@apmcaklan-asm.com';               // Your Namecheap email address
+  $mail->Password   = 'XU3n(hkH&M%+';                    // Your email password
+  $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // SSL encryption
+  $mail->Port       = 465;                                // SSL port
 
+  // Email headers
+  $mail->setFrom('noreply@apmcaklan-asm.com', 'APMC-Aklan Inc.');
+  $mail->addAddress($to, $_SESSION['name']);
+
+  // Email content
+  $mail->isHTML(true);
+  $mail->Subject = $subject;
+  $mail->Body    = $message;
+  $mail->AltBody = $alt_message;
+
+  // Send email
+  $mail->send();
+  $msg = "We have sent you an email with a copy of your selections.";
 } catch (Exception $e) {
-	$msg = "We are unable to send you an email. Please confirm that you are using a valid email and that your internet connection is stable.";
+  $msg = "We are unable to send you an email. Please confirm that you are using a valid email and that your internet connection is stable.";
 }
 
 require_once 'header.php';

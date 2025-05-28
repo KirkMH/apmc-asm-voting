@@ -1,5 +1,11 @@
 <?php
 require_once 'metaheader.php';
+require_once 'core/PHPMailer/PHPMailer.php';
+require_once 'core/PHPMailer/SMTP.php';
+require_once 'core/PHPMailer/Exception.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 if (Input::get('hiddenSubmit')) {	
 	// check if already voted
@@ -40,6 +46,7 @@ if (Input::get('hiddenSubmit')) {
 	$message =  "
 	<p style='font-size: 14pt;'>Hi, ".$_SESSION['name'].". Thank you for casting your vote!</p>
 	<p style='font-size: 14pt;'>With your $total_points points, below is the list of candidates that you have voted for, with the corresponding number of points that you have given to each one of them.</p><br>";
+	$alt_message = "Hi, ".$_SESSION['name'].". Thank you for casting your vote!\n\nWith your $total_points points, below is the list of candidates that you have voted for, with the corresponding number of points that you have given to each one of them.\n\n";
 
 	$message .= "
 	<table class='table table-hover'>
@@ -57,14 +64,15 @@ if (Input::get('hiddenSubmit')) {
 
 	$all = MyDb::select_all("tbl_vote.candidate_id, display_name, points", "tbl_vote INNER JOIN tbl_candidate ON tbl_vote.candidate_id = tbl_candidate.candidate_id", "tbl_vote.member_id = $member_id ORDER BY display_name");
 	while ($data = $all->fetchAll(PDO::FETCH_ASSOC)) {
-	foreach ($data as $value) {
-		$ctr++;
-		$total += $value['points'];
-		$message .= "<tr>
-						<td style='text-align: left;font-size: 14pt;padding: 5px;'>".$ctr . ". " . $value['display_name']."</td>
-						<td style='text-align: center;font-size: 14pt;padding: 5px;'>".$value['points']."</td>
-					</tr>";
-	}
+		foreach ($data as $value) {
+			$ctr++;
+			$total += $value['points'];
+			$message .= "<tr>
+							<td style='text-align: left;font-size: 14pt;padding: 5px;'>".$ctr . ". " . $value['display_name']."</td>
+							<td style='text-align: center;font-size: 14pt;padding: 5px;'>".$value['points']."</td>
+						</tr>";
+			$alt_message .= "".$ctr . ". " . $value['display_name']." (".$value['points'].")\n";
+		}
 	}
 	$message .= "   <tr>
 						<th style='text-align: left;font-size: 14pt;font-weight: bold;'>TOTAL</th>
@@ -72,25 +80,34 @@ if (Input::get('hiddenSubmit')) {
 					</tr>
 				</tbody>
 					</table>";
-	
+	$alt_message .= "\n\nTOTAL: ".$total."\n";
 
-	$header = "From:Asia Pacific Medical Center - Aklan Inc. <emailauth@asiapacificmedicalcenter-aklan.com> \r\n";
-	$header .= "Reply-To: emailauth@asiapacificmedicalcenter-aklan.com\r\n";
-	$header .= "Return-Path: emailauth@asiapacificmedicalcenter-aklan.com\r\n";
-	//$header .= 'Cc: bsdelatorre1986@yahoo.com, roelesca@yahoo.com, peps_md07@yahoo.com, sazonpauleen@gmail.com' . "\r\n";
-	$header .= 'Bcc: f1itss.aklan@gmail.com' . "\r\n"; //mconananmoratomd@yahoo.com, 
-
-	$header .= "MIME-Version: 1.0\r\n";
-	$header .= "Content-type: text/html\r\n";
 	
-	$msg = "";
+	$mail = new PHPMailer();
+
 	try {
-		if( mail ($to,$subject,$message,$header) ) {
-			$msg = "success";
-		}else {
-			$msg = "invalid";
-		}
+		// SMTP server configuration
+		$mail->isSMTP();
+		$mail->Host       = 'server901.web-hosting.com';            // Namecheap SMTP server
+		$mail->SMTPAuth   = true;
+		$mail->Username   = 'noreply@apmcaklan-asm.com';               // Your Namecheap email address
+		$mail->Password   = 'XU3n(hkH&M%+';                    // Your email password
+		$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // SSL encryption
+		$mail->Port       = 465;                                // SSL port
 
+		// Email headers
+		$mail->setFrom('noreply@apmcaklan-asm.com', 'APMC-Aklan Inc.');
+		$mail->addAddress($to, $_SESSION['name']);
+
+		// Email content
+		$mail->isHTML(true);
+		$mail->Subject = $subject;
+		$mail->Body    = $message;
+		$mail->AltBody = $alt_message;
+
+		// Send email
+		$mail->send();
+		$msg = "success";
 	} catch (Exception $e) {
 		$msg = "error";
 	}

@@ -64,7 +64,7 @@ $votes = number_format($_SESSION['points'] * 15);
 
 	      <?php
 	      // list all the candidates under this position
-	      $candidates = MyDb::select_all("*", "tbl_candidate", "1 ORDER BY display_name ASC");
+	      $candidates = MyDb::select_all("*", "tbl_candidate", "1");
 
 		  while ($data = $candidates->fetchAll(PDO::FETCH_ASSOC)) {
 		    foreach ($data as $value) {

@@ -72,6 +72,15 @@ CREATE TABLE `tbl_agenda` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Temporary agenda votes table (for vote in progress)
+CREATE TABLE `tbl_agenda_vote` (
+  `vote_id` int(11) NOT NULL AUTO_INCREMENT,
+  `member_id` int(11) NOT NULL,
+  `agenda_id` int(11) NOT NULL,
+  `vote` varchar(1) NOT NULL,
+  PRIMARY KEY (`vote_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Temporary agenda votes table (for vote in progress)
 CREATE TABLE `tbl_agenda_temp_vote` (
   `temp_id` int(11) NOT NULL AUTO_INCREMENT,
   `member_id` int(11) NOT NULL,
