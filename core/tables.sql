@@ -88,3 +88,13 @@ CREATE TABLE `tbl_agenda_temp_vote` (
   `vote` varchar(1) NOT NULL,
   PRIMARY KEY (`temp_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE VIEW results AS 
+SELECT 
+    tbl_candidate.candidate_id AS candidate_id, 
+    tbl_candidate.display_name AS display_name, 
+    COALESCE(SUM(tbl_vote.points), 0) AS total_votes 
+FROM tbl_candidate 
+LEFT JOIN tbl_vote ON tbl_candidate.candidate_id = tbl_vote.candidate_id 
+GROUP BY candidate_id, display_name;
