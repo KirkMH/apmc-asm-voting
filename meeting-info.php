@@ -141,7 +141,7 @@ $status = "OPEN";
                     Meeting ID: 84437646730<br>
                     Passcode: 2023ASM</b><br><br>
                     Join  Meeting<br>
-                    <a href="https://us02web.zoom.us/j/84437646730?pwd=RzFxbmhxVDkzeGhQcGMzZjRsUjlUZz09">https://us02web.zoom.us/j/84437646730?pwd=RzFxbmhxVDkzeGhQcGMzZjRsUjlUZz09</a>
+                    <a href="https://us02web.zoom.us/j/83065471136?pwd=wf5sbFOAXcRP4ARbEOfAGGM3pswFbI.1">https://us02web.zoom.us/j/83065471136?pwd=wf5sbFOAXcRP4ARbEOfAGGM3pswFbI.1</a>
                 </p>
                 <p></p>
                 <p>Please be guided that only those Stockholders who have successfully registered in the Online Voting Portal and those who have notified the Company thru email of their intent to participate in the ASM by remote communication on or before 15 August 2023 will be allowed to join in the Meeting and will be included in determining quorum.</p>

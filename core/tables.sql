@@ -98,3 +98,14 @@ SELECT
 FROM tbl_candidate 
 LEFT JOIN tbl_vote ON tbl_candidate.candidate_id = tbl_vote.candidate_id 
 GROUP BY candidate_id, display_name;
+
+CREATE VIEW summary AS 
+SELECT 
+  id, 
+  full_name, 
+  shares, 
+  (shares * 15) AS max_points, 
+  SUM(points) AS used 
+FROM tbl_shareholder 
+LEFT JOIN tbl_vote ON (tbl_shareholder.id = tbl_vote.member_id) 
+GROUP BY id, full_name, shares, max_points;

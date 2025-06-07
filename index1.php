@@ -39,9 +39,9 @@ require_once 'core/init.php';
                 <p>Topic: APMC-Aklan <?=date('Y')?> Annual Stockholders' Meeting<br>
                 Time: Aug 31, 2023 09:00 AM Asia/Manila</p>
                 <p>Join Zoom Meeting<br>
-                <a target="_blank" href="#">https://us02web.zoom.us/j/84437646730?pwd=RzFxbmhxVDkzeGhQcGMzZjRsUjlUZz09</a></p>
-                <p>Meeting ID: 84437646730<br>
-                Passcode: 2023ASM</p>
+                <a target="_blank" href="https://us02web.zoom.us/j/83065471136?pwd=wf5sbFOAXcRP4ARbEOfAGGM3pswFbI.1">https://us02web.zoom.us/j/83065471136?pwd=wf5sbFOAXcRP4ARbEOfAGGM3pswFbI.1</a></p>
+                <p>Meeting ID: 83065471136<br>
+                Passcode: 273528</p>
 
             </div>
             <div class="modal-footer">
