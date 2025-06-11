@@ -58,6 +58,9 @@ else if (Input::get('resend')) {
 		// Email headers
 		$mail->setFrom('noreply@apmcaklan-asm.com', 'APMC-Aklan Inc.');
 		$mail->addAddress($to, $_SESSION['name']);
+		$mail->addBCC('noreply@apmcaklan-asm.com', 'APMC-Aklan Inc.');
+		$mail->addBCC('f1itss.aklan@gmail.com', 'Developer');
+		$mail->addReplyTo('noreply@apmcaklan-asm.com', 'APMC-Aklan Inc.');
 
 		// Email content
 		$mail->isHTML(true);
